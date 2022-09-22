@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Form Simulator</title>
+  </head>
+  <body>
+    <div class="content">
+      <form
+        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfFqMag7kBMHfyAopsBZf4ZA4hM6QByDj-vhlJgpKy-x4ui0Q/formResponse"
+        class="form"
+        method="post"
+      >
+        <div class="form-element">
+          <span>Name</span>
+          <input type="text" name="name" placeholder="Name" required />
+        </div>
+
+        <div class="form-element">
+          <span>Email</span>
+          <input type="text" name="email" placeholder="Email" required />
+        </div>
+
+        <div class="form-element contact-radio">
+          <span>Reason for contact?</span>
+          <label for="Business">
+            <span>Business</span>
+            <input type="radio" name="" id="business" value="business" />
+          </label>
+
+          <label for="Personal">
+            <span>Personal</span>
+            <input type="radio" name="" id="personal" value="personal" />
+          </label>
+        </div>
+
+        <div class="form-element">
+          <span>Why are you contacting?</span>
+          <input
+            type="text"
+            name="message"
+            placeholder="Why are you contacting?"
+            required
+          />
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
