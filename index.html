@@ -5,48 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Google Form Simulator</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="content">
-      <form
-        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfFqMag7kBMHfyAopsBZf4ZA4hM6QByDj-vhlJgpKy-x4ui0Q/formResponse"
-        class="form"
-        method="post"
-      >
-        <div class="form-element">
-          <span>Name</span>
-          <input type="text" name="name" placeholder="Name" required />
+      <form action="" class="form" method="post">
+        <div class="form-header">
+          <h1>Contact Form</h1>
         </div>
 
         <div class="form-element">
-          <span>Email</span>
-          <input type="text" name="email" placeholder="Email" required />
-        </div>
-
-        <div class="form-element contact-radio">
-          <span>Reason for contact?</span>
-          <label for="Business">
-            <span>Business</span>
-            <input type="radio" name="" id="business" value="business" />
-          </label>
-
-          <label for="Personal">
-            <span>Personal</span>
-            <input type="radio" name="" id="personal" value="personal" />
-          </label>
-        </div>
-
-        <div class="form-element">
-          <span>Why are you contacting?</span>
+          <span class="element-title">Name</span>
           <input
             type="text"
-            name="message"
-            placeholder="Why are you contacting?"
+            name="name"
+            placeholder="Enter your full name..."
             required
           />
         </div>
 
-        <button type="submit">Submit</button>
+        <div class="form-element">
+          <span class="element-title">Email</span>
+          <input
+            type="text"
+            name="email"
+            placeholder="Enter your email..."
+            required
+          />
+        </div>
+
+        <div class="form-element contact-radio">
+          <span class="element-title">Reason for contact?</span>
+          <label for="Business" id="business">
+            <input
+              type="radio"
+              name="reason-radio"
+              id="business"
+              value="business"
+            />
+            <span class="radio-span">Business</span>
+          </label>
+
+          <label for="Personal" id="personal">
+            <input
+              type="radio"
+              name="reason-radio"
+              id="personal"
+              value="personal"
+            />
+            <span class="radio-span">Personal</span>
+          </label>
+        </div>
+
+        <div class="form-element">
+          <span class="element-title">Why are you contacting?</span>
+          <textarea
+            name="message"
+            id="contact-message"
+            cols="30"
+            rows="5"
+            placeholder="Reason for contact..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-controls">
+          <button type="submit" id="btn-submit">Submit</button>
+        </div>
       </form>
     </div>
   </body>
