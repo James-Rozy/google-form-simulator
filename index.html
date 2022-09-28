@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Google Form Simulator</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
   </head>
   <body>
     <div class="content">
@@ -18,7 +19,7 @@
           <span class="element-title">Name</span>
           <input
             type="text"
-            name="name"
+            name="contactName"
             placeholder="Enter your full name..."
             required
           />
@@ -28,7 +29,7 @@
           <span class="element-title">Email</span>
           <input
             type="text"
-            name="email"
+            name="contactEmail"
             placeholder="Enter your email..."
             required
           />
@@ -39,9 +40,10 @@
           <label for="Business" id="business">
             <input
               type="radio"
-              name="reason-radio"
+              name="contactReason"
               id="business"
               value="business"
+              required
             />
             <span class="radio-span">Business</span>
           </label>
@@ -49,9 +51,10 @@
           <label for="Personal" id="personal">
             <input
               type="radio"
-              name="reason-radio"
+              name="contactReason"
               id="personal"
               value="personal"
+              required
             />
             <span class="radio-span">Personal</span>
           </label>
@@ -60,7 +63,7 @@
         <div class="form-element">
           <span class="element-title">Why are you contacting?</span>
           <textarea
-            name="message"
+            name="contactMessage"
             id="contact-message"
             cols="30"
             rows="5"
