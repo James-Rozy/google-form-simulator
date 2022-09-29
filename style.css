@@ -25,27 +25,37 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--emerald-100);
 }
 
-h1 {
-  font-size: 2.4rem;
+h2 {
+  font-size: 2rem;
   color: var(--emerald-900);
 }
 
-.form {
+.content {
+  display: flex;
+  gap: 48px;
+  padding: 24px;
+}
+
+/* Form */
+#contact-form {
   display: flex;
   flex-direction: column;
   width: 550px;
 }
 
 .form-header,
-.form-element {
+.form-element,
+nav {
   display: flex;
+  flex-direction: column;
+  gap: 6px;
   padding: 32px;
   margin-bottom: 24px;
   background-color: var(--emerald-50);
@@ -56,10 +66,6 @@ h1 {
 .form-header {
   align-content: center;
   border-top: 12px solid #047857;
-}
-
-.form-element {
-  flex-direction: column;
 }
 
 .form-controls {
@@ -73,7 +79,8 @@ h1 {
   font-weight: 500;
 }
 
-input,
+input[type=text],
+select,
 textarea {
   padding: 4px 6px;
   font-size: 1rem;
@@ -83,12 +90,19 @@ textarea {
   border-radius: 6px;
 }
 
-.radio-span {
-  font-weight: 400;
+.hcInputsDiv {
+  display: flex;
+  gap: 10px;
 }
 
-#business {
-  margin-bottom: 6px;
+.institute {
+  /* flex-grow: 2; */
+}
+
+.hoursInputs>div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #btn-submit,

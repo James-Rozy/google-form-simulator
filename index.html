@@ -10,66 +10,56 @@
   </head>
   <body>
     <div class="content">
-      <form action="" class="form" method="post">
+      <form action="" id="form" method="post">
         <div class="form-header">
-          <h1>Contact Form</h1>
+          <h2>Contact Form</h2>
+          <p>Description</p>
         </div>
 
-        <div class="form-element">
-          <span class="element-title">Name</span>
-          <input
-            type="text"
-            name="contactName"
-            placeholder="Enter your full name..."
-            required
-          />
-        </div>
+        <div id="form-element-list">
+          <div class="form-element">
+            <h3 class="element-title">Upload</h3>
+            <p>Description</p>
+            <input type="file" name="uploadFile" required />
+          </div>
 
-        <div class="form-element">
-          <span class="element-title">Email</span>
-          <input
-            type="text"
-            name="contactEmail"
-            placeholder="Enter your email..."
-            required
-          />
-        </div>
+          <div class="form-element">
+            <h3 class="element-title">Hours/Credits</h3>
+            <div class="hcInputsDiv">
+              <div class="hours">
+                <label for="hours">Hours</label>
+                <input type="text" name="hours" id="hours" />
+              </div>
 
-        <div class="form-element contact-radio">
-          <span class="element-title">Reason for contact?</span>
-          <label for="Business" id="business">
-            <input
-              type="radio"
-              name="contactReason"
-              id="business"
-              value="business"
-              required
-            />
-            <span class="radio-span">Business</span>
-          </label>
+              <div class="institute">
+                <label for="institute">Institute</label>
+                <input type="text" name="institute" id="institute" />
+              </div>
 
-          <label for="Personal" id="personal">
-            <input
-              type="radio"
-              name="contactReason"
-              id="personal"
-              value="personal"
-              required
-            />
-            <span class="radio-span">Personal</span>
-          </label>
-        </div>
+              <div>
+                <label for="month">Month</label>
+                <input type="text" name="month" id="month" />
+              </div>
 
-        <div class="form-element">
-          <span class="element-title">Why are you contacting?</span>
-          <textarea
-            name="contactMessage"
-            id="contact-message"
-            cols="30"
-            rows="5"
-            placeholder="Reason for contact..."
-            required
-          ></textarea>
+              <div>
+                <label for="year">Year</label>
+                <input type="text" name="year" id="year" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-element">
+            <h3 class="element-title">Training Reference</h3>
+            <p>Description</p>
+            <select name="courseDropdown" class="courseDropdown">
+              <option value="">--Select an applicable course--</option>
+              <option value="course1">Course 1</option>
+              <option value="course2">Course 2</option>
+              <option value="course3">Course 3</option>
+              <option value="course4">Course 4</option>
+              <option value="course5">Course 5</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-controls">
@@ -77,6 +67,16 @@
           <button id="btn-clear">Clear form</button>
         </div>
       </form>
+
+      <div class="siderbar">
+        <nav>
+          <h2>Add Modules</h2>
+          <button id="btn-add-element">Add Element</button>
+          <button id="btn-add-upload">Add Upload</button>
+          <button id="btn-add-hours">Add Hours/Credits</button>
+          <button id="btn-add-training-ref">Add Training</button>
+        </nav>
+      </div>
     </div>
   </body>
 </html>
