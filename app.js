@@ -1,13 +1,13 @@
 const createFormElement = () => {
   const element = document.createElement("div");
-  const title = document.createElement("h3");
-  const description = document.createElement("p");
+  const title = document.createElement("input");
+  const description = document.createElement("input");
   const input = document.createElement("input");
 
   element.classList.add("form-element");
   title.classList.add("element-title");
 
-  title.textContent = "Element";
+  title.type = "text";
   description.textContent = "Description";
   input.placeholder = "Input some text";
 
@@ -18,25 +18,25 @@ const createFormElement = () => {
   return element;
 };
 
-const createUploadModule = () => {
-  const element = document.createElement("div");
-  const title = document.createElement("h3");
-  const description = document.createElement("p");
-  const input = document.createElement("input");
+// const createUploadModule = () => {
+//   const element = document.createElement("div");
+//   const title = document.createElement("h3");
+//   const description = document.createElement("p");
+//   const input = document.createElement("input");
 
-  element.classList.add("form-element");
-  title.classList.add("element-title");
+//   element.classList.add("form-element");
+//   title.classList.add("element-title");
 
-  title.textContent = "Upload Module";
-  description.textContent = "Description";
-  input.type = "file";
+//   title.textContent = "Upload Module";
+//   description.textContent = "Description";
+//   input.type = "file";
 
-  element.appendChild(title);
-  element.appendChild(description);
-  element.appendChild(input);
+//   element.appendChild(title);
+//   element.appendChild(description);
+//   element.appendChild(input);
 
-  return element;
-};
+//   return element;
+// };
 
 const createHoursModule = () => {
   const element = document.createElement("div");
