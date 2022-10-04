@@ -1,42 +1,81 @@
 const createFormElement = () => {
   const element = document.createElement("div");
+  const elementHeader = document.createElement("div");
   const title = document.createElement("input");
+  const controlsDiv = document.createElement("div");
+  const editBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
   const description = document.createElement("input");
-  const input = document.createElement("input");
+  const textInput = document.createElement("input");
 
   element.classList.add("form-element");
+  elementHeader.classList.add("element-header");
   title.classList.add("element-title");
+  controlsDiv.classList.add("element-controls");
+  editBtn.classList.add("btn-edit-element");
+  deleteBtn.classList.add("btn-delete-element");
+  description.classList.add("element-description");
 
   title.type = "text";
-  description.textContent = "Description";
-  input.placeholder = "Input some text";
+  title.placeholder = "Element Title";
+  editBtn.textContent = "Edit";
+  deleteBtn.textContent = "Delete";
+  description.type = "text";
+  description.placeholder = "Description";
 
-  element.appendChild(title);
+  // Element inputs
+  textInput.classList.add("textInput");
+  textInput.type = "text";
+  textInput.placeholder = "Input some text";
+
+  controlsDiv.appendChild(editBtn);
+  controlsDiv.appendChild(deleteBtn);
+  elementHeader.appendChild(title);
+  elementHeader.appendChild(controlsDiv);
+  element.appendChild(elementHeader);
   element.appendChild(description);
-  element.appendChild(input);
+  element.appendChild(textInput);
 
   return element;
 };
 
-// const createUploadModule = () => {
-//   const element = document.createElement("div");
-//   const title = document.createElement("h3");
-//   const description = document.createElement("p");
-//   const input = document.createElement("input");
+const createUploadModule = () => {
+  const element = document.createElement("div");
+  const elementHeader = document.createElement("div");
+  const title = document.createElement("input");
+  const controlsDiv = document.createElement("div");
+  const editBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
+  const description = document.createElement("input");
+  const fileInput = document.createElement("input");
 
-//   element.classList.add("form-element");
-//   title.classList.add("element-title");
+  element.classList.add("form-element");
+  elementHeader.classList.add("element-header");
+  title.classList.add("element-title");
+  controlsDiv.classList.add("element-controls");
+  editBtn.classList.add("btn-edit-element");
+  deleteBtn.classList.add("btn-delete-element");
+  description.classList.add("element-description");
 
-//   title.textContent = "Upload Module";
-//   description.textContent = "Description";
-//   input.type = "file";
+  title.type = "text";
+  title.placeholder = "Upload";
+  editBtn.textContent = "Edit";
+  deleteBtn.textContent = "Delete";
+  description.type = "text";
+  description.placeholder = "Description";
 
-//   element.appendChild(title);
-//   element.appendChild(description);
-//   element.appendChild(input);
+  fileInput.type = "file";
 
-//   return element;
-// };
+  controlsDiv.appendChild(editBtn);
+  controlsDiv.appendChild(deleteBtn);
+  elementHeader.appendChild(title);
+  elementHeader.appendChild(controlsDiv);
+  element.appendChild(elementHeader);
+  element.appendChild(description);
+  element.appendChild(fileInput);
+
+  return element;
+};
 
 const createHoursModule = () => {
   const element = document.createElement("div");
@@ -99,6 +138,15 @@ const createHoursModule = () => {
   element.appendChild(inputsDiv);
 
   return element;
+};
+
+const displayFormElements = () => {
+  const formElementList = document.querySelector("#form-element-list");
+
+  // Remove old elements from the list before updating
+  while (formElementList.firstChild) {
+    formElementList.removeChild(formElementList.firstChild);
+  }
 };
 
 (() => {

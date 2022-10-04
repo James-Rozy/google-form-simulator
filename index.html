@@ -11,47 +11,103 @@
   <body>
     <div class="content">
       <form action="" id="form" method="post">
+        <!-- Header Module -->
         <div class="form-header">
-          <h2>Contact Form</h2>
-          <p>Description</p>
+          <input type="text" id="form-title" placeholder="Form Title" />
+          <input type="text" id="form-description" placeholder="Description" />
         </div>
 
+        <!-- Upload Module -->
         <div id="form-element-list">
           <div class="form-element">
-            <h3 class="element-title">Upload</h3>
-            <p>Description</p>
-            <input type="file" name="uploadFile" required />
+            <header class="element-header">
+              <input type="text" class="element-title" placeholder="Upload" />
+              <div class="element-controls">
+                <button class="btn-edit-element">Edit</button>
+                <button class="btn-delete-element">Delete</button>
+              </div>
+            </header>
+
+            <input
+              type="text"
+              class="element-description"
+              placeholder="Description"
+            />
+
+            <input type="file" name="uploadFile" class="file-input" required />
           </div>
 
+          <!-- Hours/Credits Module -->
           <div class="form-element">
-            <h3 class="element-title">Hours/Credits</h3>
-            <div class="hcInputsDiv">
+            <header class="element-header">
+              <input
+                type="text"
+                class="element-title"
+                placeholder="Hours/Credits"
+              />
+
+              <div class="element-controls">
+                <button class="btn-edit-element">Edit</button>
+                <button class="btn-delete-element">Delete</button>
+              </div>
+            </header>
+
+            <input
+              type="text"
+              class="element-description"
+              placeholder="Description"
+            />
+
+            <div class="hc-inputs-div">
               <div class="hours">
                 <label for="hours">Hours</label>
-                <input type="text" name="hours" id="hours" />
+                <input type="text" name="hours" id="hours" class="text-input" />
               </div>
 
               <div class="institute">
                 <label for="institute">Institute</label>
-                <input type="text" name="institute" id="institute" />
+                <input
+                  type="text"
+                  name="institute"
+                  id="institute"
+                  class="text-input"
+                />
               </div>
 
               <div>
                 <label for="month">Month</label>
-                <input type="text" name="month" id="month" />
+                <input type="text" name="month" id="month" class="text-input" />
               </div>
 
               <div>
                 <label for="year">Year</label>
-                <input type="text" name="year" id="year" />
+                <input type="text" name="year" id="year" class="text-input" />
               </div>
             </div>
           </div>
 
+          <!-- Training Reference Module -->
           <div class="form-element">
-            <h3 class="element-title">Training Reference</h3>
-            <p>Description</p>
-            <select name="courseDropdown" class="courseDropdown">
+            <header class="element-header">
+              <input
+                type="text"
+                class="element-title"
+                placeholder="Training Reference"
+              />
+
+              <div class="element-controls">
+                <button class="btn-edit-element">Edit</button>
+                <button class="btn-delete-element">Delete</button>
+              </div>
+            </header>
+
+            <input
+              type="text"
+              class="element-description"
+              placeholder="Description"
+            />
+
+            <select name="course-dropdown" class="course-dropdown">
               <option value="">--Select an applicable course--</option>
               <option value="course1">Course 1</option>
               <option value="course2">Course 2</option>
@@ -62,21 +118,29 @@
           </div>
         </div>
 
+        <!-- Form Controls -->
         <div class="form-controls">
           <button type="submit" id="btn-submit">Submit</button>
+
           <button id="btn-clear">Clear form</button>
         </div>
       </form>
+    </div>
 
-      <div class="siderbar">
-        <nav>
-          <h2>Add Modules</h2>
-          <button id="btn-add-element">Add Element</button>
-          <button id="btn-add-upload">Add Upload</button>
-          <button id="btn-add-hours">Add Hours/Credits</button>
-          <button id="btn-add-training-ref">Add Training</button>
-        </nav>
-      </div>
+    <!-- Add Modules Sidebar -->
+    <div class="sidebar">
+      <nav class="add-mod-menu">
+        <h2 class="form-title">Add Modules</h2>
+
+        <button id="btn-add-element" class="btn-add-module">Add Element</button>
+        <button id="btn-add-upload" class="btn-add-module">Add Upload</button>
+        <button id="btn-add-hours" class="btn-add-module">
+          Add Hours/Credits
+        </button>
+        <button id="btn-add-training-ref" class="btn-add-module">
+          Add Training
+        </button>
+      </nav>
     </div>
   </body>
 </html>
