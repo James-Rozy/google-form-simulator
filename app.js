@@ -23,6 +23,11 @@ const createFormElement = () => {
   description.type = "text";
   description.placeholder = "Description";
 
+  deleteBtn.addEventListener("click", () => {
+    while (element.firstChild) element.removeChild(element.firstChild);
+    element.remove();
+  });
+
   // Element inputs
   const textInput = document.createElement("input");
   textInput.classList.add("text-input");
@@ -65,6 +70,11 @@ const createUploadModule = () => {
   description.type = "text";
   description.placeholder = "Description";
 
+  deleteBtn.addEventListener("click", () => {
+    while (element.firstChild) element.removeChild(element.firstChild);
+    element.remove();
+  });
+
   // Element inputs
   const fileInput = document.createElement("input");
   fileInput.type = "file";
@@ -99,11 +109,16 @@ const createHoursModule = () => {
   description.classList.add("element-description");
 
   title.type = "text";
-  title.placeholder = "Element Title";
+  title.placeholder = "Hours/Credits";
   editBtn.textContent = "Edit";
   deleteBtn.textContent = "Delete";
   description.type = "text";
   description.placeholder = "Description";
+
+  deleteBtn.addEventListener("click", () => {
+    while (element.firstChild) element.removeChild(element.firstChild);
+    element.remove();
+  });
 
   // Element inputs
   const inputsDiv = document.createElement("div");
@@ -188,16 +203,26 @@ const createTrainingModule = () => {
   description.classList.add("element-description");
 
   title.type = "text";
-  title.placeholder = "Element Title";
+  title.placeholder = "Training Reference";
   editBtn.textContent = "Edit";
   deleteBtn.textContent = "Delete";
   description.type = "text";
   description.placeholder = "Description";
 
+  deleteBtn.addEventListener("click", () => {
+    while (element.firstChild) element.removeChild(element.firstChild);
+    element.remove();
+  });
+
   // Element inputs
   const selectInput = document.createElement("select");
+  const selectPlaceholderOption = document.createElement("option");
+
   selectInput.classList.add("course-dropdown");
-  selectInput.placeholder = "--Select an applicable course--";
+  selectPlaceholderOption.value = "";
+  selectPlaceholderOption.textContent = "--Select an applicable course--";
+
+  selectInput.appendChild(selectPlaceholderOption);
 
   controlsDiv.appendChild(editBtn);
   controlsDiv.appendChild(deleteBtn);
@@ -238,7 +263,7 @@ const displayFormElements = () => {
     localStorage.setItem("formDescription", e.target.value);
   });
 
-  const formElements = document.querySelector("#form-element-list");
+  const formElementList = document.querySelector("#form-element-list");
   const btnAdd = document.getElementById("btn-add-element");
   const btnAddUploadMod = document.getElementById("btn-add-upload");
   const btnAddHoursMod = document.getElementById("btn-add-hours");
@@ -246,21 +271,21 @@ const displayFormElements = () => {
 
   btnAdd.addEventListener("click", () => {
     const newElement = createFormElement();
-    formElements.appendChild(newElement);
+    formElementList.appendChild(newElement);
   });
 
   btnAddUploadMod.addEventListener("click", () => {
     const newUploadModule = createUploadModule();
-    formElements.appendChild(newUploadModule);
+    formElementList.appendChild(newUploadModule);
   });
 
   btnAddHoursMod.addEventListener("click", () => {
     const newHoursModule = createHoursModule();
-    formElements.appendChild(newHoursModule);
+    formElementList.appendChild(newHoursModule);
   });
 
   btnAddTrainingRefMod.addEventListener("click", () => {
     const newTrainingModule = createTrainingModule();
-    formElements.appendChild(newTrainingModule);
+    formElementList.appendChild(newTrainingModule);
   });
 })();
