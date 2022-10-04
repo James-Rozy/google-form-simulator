@@ -1,4 +1,5 @@
 const createFormElement = () => {
+  // General form elements
   const element = document.createElement("div");
   const elementHeader = document.createElement("div");
   const title = document.createElement("input");
@@ -6,7 +7,6 @@ const createFormElement = () => {
   const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
   const description = document.createElement("input");
-  const textInput = document.createElement("input");
 
   element.classList.add("form-element");
   elementHeader.classList.add("element-header");
@@ -24,7 +24,8 @@ const createFormElement = () => {
   description.placeholder = "Description";
 
   // Element inputs
-  textInput.classList.add("textInput");
+  const textInput = document.createElement("input");
+  textInput.classList.add("text-input");
   textInput.type = "text";
   textInput.placeholder = "Input some text";
 
@@ -40,6 +41,7 @@ const createFormElement = () => {
 };
 
 const createUploadModule = () => {
+  // General form elements
   const element = document.createElement("div");
   const elementHeader = document.createElement("div");
   const title = document.createElement("input");
@@ -47,7 +49,6 @@ const createUploadModule = () => {
   const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
   const description = document.createElement("input");
-  const fileInput = document.createElement("input");
 
   element.classList.add("form-element");
   elementHeader.classList.add("element-header");
@@ -64,6 +65,8 @@ const createUploadModule = () => {
   description.type = "text";
   description.placeholder = "Description";
 
+  // Element inputs
+  const fileInput = document.createElement("input");
   fileInput.type = "file";
 
   controlsDiv.appendChild(editBtn);
@@ -78,9 +81,31 @@ const createUploadModule = () => {
 };
 
 const createHoursModule = () => {
+  // General form elements
   const element = document.createElement("div");
-  const title = document.createElement("h3");
-  const description = document.createElement("p");
+  const elementHeader = document.createElement("div");
+  const title = document.createElement("input");
+  const controlsDiv = document.createElement("div");
+  const editBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
+  const description = document.createElement("input");
+
+  element.classList.add("form-element");
+  elementHeader.classList.add("element-header");
+  title.classList.add("element-title");
+  controlsDiv.classList.add("element-controls");
+  editBtn.classList.add("btn-edit-element");
+  deleteBtn.classList.add("btn-delete-element");
+  description.classList.add("element-description");
+
+  title.type = "text";
+  title.placeholder = "Element Title";
+  editBtn.textContent = "Edit";
+  deleteBtn.textContent = "Delete";
+  description.type = "text";
+  description.placeholder = "Description";
+
+  // Element inputs
   const inputsDiv = document.createElement("div");
 
   const hoursDiv = document.createElement("div");
@@ -99,12 +124,11 @@ const createHoursModule = () => {
   const yearLabel = document.createElement("label");
   const yearInput = document.createElement("input");
 
-  element.classList.add("form-element");
-  title.classList.add("element-title");
-  inputsDiv.classList.add("hcInputsDiv");
-
-  title.textContent = "Hours Module";
-  description.textContent = "Description";
+  inputsDiv.classList.add("hc-inputs-div");
+  hoursInput.classList.add("text-input");
+  instituteInput.classList.add("text-input");
+  monthInput.classList.add("text-input");
+  yearInput.classList.add("text-input");
 
   hoursLabel.textContent = "Hours";
   instituteLabel.textContent = "Institute";
@@ -115,6 +139,11 @@ const createHoursModule = () => {
   instituteInput.type = "text";
   monthInput.type = "text";
   yearInput.type = "text";
+
+  controlsDiv.appendChild(editBtn);
+  controlsDiv.appendChild(deleteBtn);
+  elementHeader.appendChild(title);
+  elementHeader.appendChild(controlsDiv);
 
   hoursDiv.appendChild(hoursLabel);
   hoursDiv.appendChild(hoursInput);
@@ -133,9 +162,50 @@ const createHoursModule = () => {
   inputsDiv.appendChild(monthDiv);
   inputsDiv.appendChild(yearDiv);
 
-  element.appendChild(title);
+  element.appendChild(elementHeader);
   element.appendChild(description);
   element.appendChild(inputsDiv);
+
+  return element;
+};
+
+const createTrainingModule = () => {
+  // General form elements
+  const element = document.createElement("div");
+  const elementHeader = document.createElement("div");
+  const title = document.createElement("input");
+  const controlsDiv = document.createElement("div");
+  const editBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
+  const description = document.createElement("input");
+
+  element.classList.add("form-element");
+  elementHeader.classList.add("element-header");
+  title.classList.add("element-title");
+  controlsDiv.classList.add("element-controls");
+  editBtn.classList.add("btn-edit-element");
+  deleteBtn.classList.add("btn-delete-element");
+  description.classList.add("element-description");
+
+  title.type = "text";
+  title.placeholder = "Element Title";
+  editBtn.textContent = "Edit";
+  deleteBtn.textContent = "Delete";
+  description.type = "text";
+  description.placeholder = "Description";
+
+  // Element inputs
+  const selectInput = document.createElement("select");
+  selectInput.classList.add("course-dropdown");
+  selectInput.placeholder = "--Select an applicable course--";
+
+  controlsDiv.appendChild(editBtn);
+  controlsDiv.appendChild(deleteBtn);
+  elementHeader.appendChild(title);
+  elementHeader.appendChild(controlsDiv);
+  element.appendChild(elementHeader);
+  element.appendChild(description);
+  element.appendChild(selectInput);
 
   return element;
 };
@@ -151,6 +221,22 @@ const displayFormElements = () => {
 
 (() => {
   info = JSON.parse(localStorage.getItem("info")) || [];
+
+  const formTitle = document.getElementById("form-title");
+  const formDescription = document.getElementById("form-description");
+
+  const formTitleStorage = localStorage.getItem("formTitle") || "Form Title";
+  formTitle.setAttribute("value", formTitleStorage);
+  formTitle.addEventListener("change", (e) => {
+    localStorage.setItem("formTitle", e.target.value);
+  });
+
+  const formDescriptionStorage =
+    localStorage.getItem("formDescription") || "Description";
+  formDescription.setAttribute("value", formDescriptionStorage);
+  formDescription.addEventListener("change", (e) => {
+    localStorage.setItem("formDescription", e.target.value);
+  });
 
   const formElements = document.querySelector("#form-element-list");
   const btnAdd = document.getElementById("btn-add-element");
@@ -174,7 +260,7 @@ const displayFormElements = () => {
   });
 
   btnAddTrainingRefMod.addEventListener("click", () => {
-    const newTrainingRefModule = createHoursModule();
-    formElements.appendChild(newTrainingRefModule);
+    const newTrainingModule = createTrainingModule();
+    formElements.appendChild(newTrainingModule);
   });
 })();
