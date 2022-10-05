@@ -109,7 +109,7 @@ body {
 
 .element-controls {
   display: flex;
-  gap: 0.6rem;
+  gap: 10px;
 }
 
 #form-description,
