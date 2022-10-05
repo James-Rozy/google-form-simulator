@@ -4,7 +4,6 @@ const createFormElement = () => {
   const elementHeader = document.createElement("div");
   const title = document.createElement("input");
   const controlsDiv = document.createElement("div");
-  const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
   const description = document.createElement("input");
 
@@ -12,13 +11,11 @@ const createFormElement = () => {
   elementHeader.classList.add("element-header");
   title.classList.add("element-title");
   controlsDiv.classList.add("element-controls");
-  editBtn.classList.add("btn-edit-element");
   deleteBtn.classList.add("btn-delete-element");
   description.classList.add("element-description");
 
   title.type = "text";
   title.placeholder = "Element Title";
-  editBtn.textContent = "Edit";
   deleteBtn.textContent = "Delete";
   description.type = "text";
   description.placeholder = "Description";
@@ -34,7 +31,6 @@ const createFormElement = () => {
   textInput.type = "text";
   textInput.placeholder = "Input some text";
 
-  controlsDiv.appendChild(editBtn);
   controlsDiv.appendChild(deleteBtn);
   elementHeader.appendChild(title);
   elementHeader.appendChild(controlsDiv);
@@ -51,7 +47,6 @@ const createUploadModule = () => {
   const elementHeader = document.createElement("div");
   const title = document.createElement("input");
   const controlsDiv = document.createElement("div");
-  const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
   const description = document.createElement("input");
 
@@ -59,13 +54,11 @@ const createUploadModule = () => {
   elementHeader.classList.add("element-header");
   title.classList.add("element-title");
   controlsDiv.classList.add("element-controls");
-  editBtn.classList.add("btn-edit-element");
   deleteBtn.classList.add("btn-delete-element");
   description.classList.add("element-description");
 
   title.type = "text";
   title.placeholder = "Upload";
-  editBtn.textContent = "Edit";
   deleteBtn.textContent = "Delete";
   description.type = "text";
   description.placeholder = "Description";
@@ -79,7 +72,6 @@ const createUploadModule = () => {
   const fileInput = document.createElement("input");
   fileInput.type = "file";
 
-  controlsDiv.appendChild(editBtn);
   controlsDiv.appendChild(deleteBtn);
   elementHeader.appendChild(title);
   elementHeader.appendChild(controlsDiv);
@@ -96,7 +88,6 @@ const createHoursModule = () => {
   const elementHeader = document.createElement("div");
   const title = document.createElement("input");
   const controlsDiv = document.createElement("div");
-  const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
   const description = document.createElement("input");
 
@@ -104,13 +95,11 @@ const createHoursModule = () => {
   elementHeader.classList.add("element-header");
   title.classList.add("element-title");
   controlsDiv.classList.add("element-controls");
-  editBtn.classList.add("btn-edit-element");
   deleteBtn.classList.add("btn-delete-element");
   description.classList.add("element-description");
 
   title.type = "text";
   title.placeholder = "Hours/Credits";
-  editBtn.textContent = "Edit";
   deleteBtn.textContent = "Delete";
   description.type = "text";
   description.placeholder = "Description";
@@ -155,7 +144,6 @@ const createHoursModule = () => {
   monthInput.type = "text";
   yearInput.type = "text";
 
-  controlsDiv.appendChild(editBtn);
   controlsDiv.appendChild(deleteBtn);
   elementHeader.appendChild(title);
   elementHeader.appendChild(controlsDiv);
@@ -190,7 +178,6 @@ const createTrainingModule = () => {
   const elementHeader = document.createElement("div");
   const title = document.createElement("input");
   const controlsDiv = document.createElement("div");
-  const editBtn = document.createElement("button");
   const deleteBtn = document.createElement("button");
   const description = document.createElement("input");
 
@@ -198,13 +185,11 @@ const createTrainingModule = () => {
   elementHeader.classList.add("element-header");
   title.classList.add("element-title");
   controlsDiv.classList.add("element-controls");
-  editBtn.classList.add("btn-edit-element");
   deleteBtn.classList.add("btn-delete-element");
   description.classList.add("element-description");
 
   title.type = "text";
   title.placeholder = "Training Reference";
-  editBtn.textContent = "Edit";
   deleteBtn.textContent = "Delete";
   description.type = "text";
   description.placeholder = "Description";
@@ -216,15 +201,22 @@ const createTrainingModule = () => {
 
   // Element inputs
   const selectInput = document.createElement("select");
-  const selectPlaceholderOption = document.createElement("option");
+  const placeholderOption = document.createElement("option");
+  const addOption = document.createElement("option");
+  const addOptionInput = document.createElement("input");
 
   selectInput.classList.add("course-dropdown");
-  selectPlaceholderOption.value = "";
-  selectPlaceholderOption.textContent = "--Select an applicable course--";
+  placeholderOption.value = "";
+  placeholderOption.textContent = "--Select an applicable course--";
+  addOptionInput.type = "text";
+  addOptionInput.placeholder = "Add option";
 
-  selectInput.appendChild(selectPlaceholderOption);
+  selectInput.appendChild(placeholderOption);
+  addOption.appendChild(addOptionInput);
+  selectInput.appendChild(addOption);
 
-  controlsDiv.appendChild(editBtn);
+  addOptionInput.addEventListener("change", () => {});
+
   controlsDiv.appendChild(deleteBtn);
   elementHeader.appendChild(title);
   elementHeader.appendChild(controlsDiv);
@@ -263,6 +255,7 @@ const displayFormElements = () => {
     localStorage.setItem("formDescription", e.target.value);
   });
 
+  // Sidebar controls for adding elements to the form elements list
   const formElementList = document.querySelector("#form-element-list");
   const btnAdd = document.getElementById("btn-add-element");
   const btnAddUploadMod = document.getElementById("btn-add-upload");

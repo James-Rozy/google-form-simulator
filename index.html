@@ -87,7 +87,7 @@
           </div> -->
 
           <!-- Training Reference Module -->
-          <!-- <div class="form-element">
+          <div class="form-element">
             <header class="element-header">
               <input
                 type="text"
@@ -96,7 +96,6 @@
               />
 
               <div class="element-controls">
-                <button class="btn-edit-element">Edit</button>
                 <button class="btn-delete-element">Delete</button>
               </div>
             </header>
@@ -107,22 +106,35 @@
               placeholder="Description"
             />
 
-            <select name="course-dropdown" class="course-dropdown">
+            <!-- <select name="course-dropdown" class="course-dropdown">
               <option value="">--Select an applicable course--</option>
               <option value="course1">Course 1</option>
               <option value="course2">Course 2</option>
               <option value="course3">Course 3</option>
               <option value="course4">Course 4</option>
               <option value="course5">Course 5</option>
-            </select>
-          </div>-->
+            </select> -->
+
+            <div class="dropdown-list">
+              <div class="drop-option-list">
+                <p class="drop-option">This is an option</p>
+                <button class="btn-remove-option">Remove</button>
+              </div>
+              <div class="add-drop-option">
+                <input
+                  type="text"
+                  class="add-option-input"
+                  placeholder="Add option"
+                />
+                <button class="btn-add-option">Add</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Form Controls -->
         <div class="form-controls">
-          <button type="submit" id="btn-submit">Submit</button>
-
-          <button id="btn-clear">Clear form</button>
+          <button type="submit" id="btn-submit">Save form</button>
         </div>
       </form>
     </div>

@@ -10,6 +10,8 @@
   --emerald-700: #047857;
   --emerald-900: #064e3b;
   --neutral-50: #f9fafb;
+  --neutral-100: #f5f5f5;
+  --neutral-500: #737373;
   --neutral-600: #525252;
   --neutral-700: #404040;
   --neutral-900: #171717;
@@ -31,7 +33,7 @@
 body {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   background-color: var(--emerald-100);
 }
 
@@ -44,38 +46,13 @@ body {
   padding: 24px;
 }
 
-/* Sidebar */
-.sidebar {
-  grid-column: 2/3;
-  top: 0;
-  right: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.add-mod-menu {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40vh;
-  gap: 1rem;
-  padding: 32px;
-  margin-bottom: 24px;
-  background-color: var(--emerald-50);
-  box-shadow: 0 3px 6px var(--box-shadow);
-  border-top: 12px solid #047857;
-  border-radius: 25px;
-}
-
 /* Form */
 #form-title,
 #form-description,
 .element-title,
-.element-description {
+.element-description,
+.drop-option,
+.add-option-input {
   appearance: none;
   border: none;
   outline: none;
@@ -83,38 +60,40 @@ body {
   cursor: initial;
 }
 
-#contact-form {
+#form {
   display: flex;
   flex-direction: column;
-  width: 550px;
+  min-width: 800px;
 }
 
 .form-header,
-.form-element {
+.form-element,
+.add-mod-menu {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 32px;
-  margin-bottom: 24px;
+  padding: 30px;
+  margin-bottom: 20px;
   background-color: var(--emerald-50);
   box-shadow: 0 3px 6px var(--box-shadow);
-  border-radius: 25px;
+  border-radius: 10px;
 }
 
-.form-header {
+.form-header,
+.add-mod-menu {
   align-content: center;
-  border-top: 12px solid #047857;
-}
-
-.form-controls {
-  display: flex;
-  justify-content: space-between;
+  border-top: 10px solid var(--emerald-700);
 }
 
 #form-title,
 #form-title::placeholder {
   font-size: 2rem;
   font-weight: 700;
+}
+
+.form-controls {
+  display: flex;
+  justify-content: space-between;
 }
 
 .element-header {
@@ -134,19 +113,16 @@ body {
 }
 
 #form-description,
-.element-description {
+.element-description,
+.drop-option {
   font-size: 1rem;
   font-weight: 400;
 }
 
-input[type="text"]::placeholder {
-  opacity: 1;
-  color: var(--neutral-900);
-}
-
 .text-input,
+.add-option-input,
 select.course-dropdown {
-  padding: 4px 6px;
+  padding: 10px;
   font-size: 1rem;
   color: var(--neutral-900);
   background-color: var(--neutral-50);
@@ -164,46 +140,118 @@ select.course-dropdown {
   flex-direction: column;
 }
 
+.dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.drop-option-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-drop-option {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="text"]::placeholder {
+  opacity: 1;
+  color: var(--neutral-900);
+}
+
+#form-title:focus,
+#form-description:focus,
+input[type="text"]:focus {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--emerald-900);
+  background-color: var(--emerald-100);
+}
+
+.text-input:focus,
+input[type="text"]:focus,
+select.course-dropdown:focus {
+  background-color: var(--emerald-100);
+}
+
+/* Sidebar || Inherits from form header */
+.sidebar {
+  grid-column: 2/3;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-mod-menu {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40vh;
+}
+
 /* Buttons */
 .btn-edit-element,
 .btn-delete-element,
-#btn-submit,
-#btn-clear,
-.btn-add-module {
-  padding: 6px 12px;
+.btn-add-module,
+.btn-remove-option,
+.btn-add-option,
+#btn-submit {
+  padding: 10px;
   border: none;
-  border-radius: 6px;
-  font-size: 1.2rem;
-  font-weight: 500;
+  border-radius: 10px;
   color: var(--neutral-50);
 }
 
-.btn-delete-element {
+.btn-edit-element,
+.btn-delete-element,
+.btn-add-module,
+#btn-submit {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.btn-remove-option,
+.btn-add-option {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.btn-delete-element,
+.btn-remove-option {
   background-color: var(--red-700);
 }
 
+.btn-add-option,
 #btn-submit {
   background-color: var(--emerald-900);
 }
 
 .btn-add-module,
-.btn-edit-element,
-#btn-clear {
-  background-color: var(--neutral-700);
+.btn-edit-element {
+  background-color: var(--neutral-600);
 }
 
 .btn-add-module:hover,
 .btn-edit-element:hover,
 .btn-delete-element:hover,
-#btn-submit:hover,
-#btn-clear:hover {
+.btn-remove-option:hover,
+.btn-add-option:hover,
+#btn-submit:hover {
   box-shadow: 0 3px 6px var(--box-shadow);
 }
 
+.btn-remove-option:hover,
 .btn-delete-element:hover {
   background-color: var(--red-600);
 }
 
+.btn-add-option:hover,
 #btn-submit:hover {
   background-color: var(--emerald-700);
 }
@@ -211,14 +259,15 @@ select.course-dropdown {
 .btn-add-module:hover,
 .btn-edit-element:hover,
 #btn-clear:hover {
-  background-color: var(--neutral-600);
+  background-color: var(--neutral-500);
 }
 
 .btn-add-module:active,
 .btn-edit-element:active,
 .btn-delete-element:active,
-#btn-submit:active,
-#btn-clear:active {
+.btn-remove-option:active,
+.btn-add-option:active,
+#btn-submit:active {
   transform: translateY(2px);
   box-shadow: 0 3px 6px var(--box-shadow);
 }
