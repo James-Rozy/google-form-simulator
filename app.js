@@ -202,20 +202,21 @@ const createTrainingModule = () => {
   // Element inputs
   const selectInput = document.createElement("select");
   const placeholderOption = document.createElement("option");
-  const addOption = document.createElement("option");
-  const addOptionInput = document.createElement("input");
+  const amazonOption = document.createElement("option");
+  const googleOption = document.createElement("option");
+  const azureOption = document.createElement("option");
 
   selectInput.classList.add("course-dropdown");
   placeholderOption.value = "";
   placeholderOption.textContent = "--Select an applicable course--";
-  addOptionInput.type = "text";
-  addOptionInput.placeholder = "Add option";
+  amazonOption.textContent = "Amazon Web Services";
+  googleOption.textContent = "Google Cloud Platform";
+  azureOption.textContent = "Azure DevOps Server";
 
   selectInput.appendChild(placeholderOption);
-  addOption.appendChild(addOptionInput);
-  selectInput.appendChild(addOption);
-
-  addOptionInput.addEventListener("change", () => {});
+  selectInput.appendChild(amazonOption);
+  selectInput.appendChild(googleOption);
+  selectInput.appendChild(azureOption);
 
   controlsDiv.appendChild(deleteBtn);
   elementHeader.appendChild(title);

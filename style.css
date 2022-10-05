@@ -140,7 +140,7 @@ select.course-dropdown {
   flex-direction: column;
 }
 
-.dropdown-list {
+.dropdown-div {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -152,7 +152,7 @@ select.course-dropdown {
   justify-content: space-between;
 }
 
-.add-drop-option {
+.add-option-div {
   display: flex;
   justify-content: space-between;
 }
