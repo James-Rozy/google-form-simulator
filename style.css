@@ -3,18 +3,8 @@
 :root {
   --main-font-family: 'Roboto', sans-serif;
   /* colors from tailwind css */
-  --emerald-50: #f0fdf4;
-  --emerald-100: #d1fae5;
-  --emerald-300: #6ee7b7;
-  --emerald-500: #10b981;
-  --emerald-700: #047857;
-  --emerald-900: #064e3b;
-  --neutral-50: #f9fafb;
-  --neutral-100: #f5f5f5;
-  --neutral-500: #737373;
-  --neutral-600: #525252;
-  --neutral-700: #404040;
-  --neutral-900: #171717;
+  --emerald-600: #10b981;
+  --emerald-700: #059669;
   --red-600: #dc2626;
   --red-700: #b91c1c;
   --slate-50: #f8fafc;
@@ -37,7 +27,7 @@
   margin: 0;
   padding: 0;
   font-family: var(--main-font-family);
-  color: var(--neutral-900);
+  color: var(--slate-900);
 }
 
 body {
@@ -57,23 +47,20 @@ body {
 }
 
 /* Form */
-#form-title,
-#form-description,
-.element-title,
-.element-description,
-.drop-option,
-.add-option-input {
-  appearance: none;
-  border: none;
-  outline: none;
-  background: none;
-  cursor: initial;
-}
-
 #form {
   display: flex;
   flex-direction: column;
   min-width: 800px;
+}
+
+input,
+select,
+button {
+  cursor: pointer;
+}
+
+input:active {
+  cursor: initial;
 }
 
 .form-header,
@@ -95,10 +82,14 @@ body {
   border-top: 10px solid var(--slate-700);
 }
 
-#form-title,
-#form-title::placeholder {
+
+#form-title {
   font-size: 2rem;
   font-weight: 700;
+  background-color: var(--slate-50);
+  border: 1px solid var(--slate-900);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .form-controls {
@@ -115,11 +106,7 @@ body {
 .element-title {
   font-size: 1.6rem;
   font-weight: 500;
-}
 
-.element-controls {
-  display: flex;
-  gap: 10px;
 }
 
 .input-div {
@@ -130,48 +117,14 @@ body {
 }
 
 #form-description,
-.element-description,
-.drop-option {
+.text-input {
   font-size: 1rem;
   font-weight: 400;
-}
-
-.text-input,
-.add-option-input,
-select.training-dropdown {
-  padding: 10px;
-  font-size: 1rem;
-  color: var(--neutral-900);
-  background-color: var(--neutral-50);
+  color: var(--slate-900);
+  background-color: var(--slate-50);
   border: 1px solid var(--slate-900);
   border-radius: 10px;
-}
-
-.hc-inputs-div {
-  display: flex;
-  gap: 0.6rem;
-}
-
-.hc-inputs-div>div {
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-div {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.drop-option-list {
-  display: flex;
-  justify-content: space-between;
-}
-
-.add-option-div {
-  display: flex;
-  justify-content: space-between;
+  padding: 10px;
 }
 
 input[type="text"]::placeholder {
@@ -189,8 +142,7 @@ input[type="text"]:focus {
 }
 
 .text-input:focus,
-input[type="text"]:focus,
-select.training-dropdown:focus {
+input[type="text"]:focus {
   background-color: var(--slate-100);
 }
 
@@ -213,19 +165,15 @@ select.training-dropdown:focus {
 }
 
 /* Buttons */
-.btn-edit-element,
 .btn-delete-element,
 .btn-add-module,
-.btn-remove-option,
-.btn-add-option,
 #btn-submit {
   padding: 10px;
   border: none;
   border-radius: 10px;
-  color: var(--neutral-50);
+  color: var(--slate-50);
 }
 
-.btn-edit-element,
 .btn-delete-element,
 .btn-add-module,
 #btn-submit {
@@ -233,57 +181,38 @@ select.training-dropdown:focus {
   font-weight: 500;
 }
 
-.btn-remove-option,
-.btn-add-option {
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-.btn-delete-element,
-.btn-remove-option {
+.btn-delete-element {
   background-color: var(--red-700);
 }
 
-.btn-add-option,
 #btn-submit {
-  background-color: var(--emerald-900);
+  background-color: var(--emerald-700);
 }
 
-.btn-add-module,
-.btn-edit-element {
-  background-color: var(--neutral-600);
+.btn-add-module {
+  background-color: var(--slate-700);
 }
 
 .btn-add-module:hover,
-.btn-edit-element:hover,
 .btn-delete-element:hover,
-.btn-remove-option:hover,
-.btn-add-option:hover,
 #btn-submit:hover {
   box-shadow: 0 3px 6px var(--box-shadow);
 }
 
-.btn-remove-option:hover,
 .btn-delete-element:hover {
   background-color: var(--red-600);
 }
 
-.btn-add-option:hover,
 #btn-submit:hover {
-  background-color: var(--emerald-700);
+  background-color: var(--emerald-600);
 }
 
-.btn-add-module:hover,
-.btn-edit-element:hover,
-#btn-clear:hover {
-  background-color: var(--neutral-500);
+.btn-add-module:hover {
+  background-color: var(--slate-600);
 }
 
 .btn-add-module:active,
-.btn-edit-element:active,
 .btn-delete-element:active,
-.btn-remove-option:active,
-.btn-add-option:active,
 #btn-submit:active {
   transform: translateY(2px);
   box-shadow: 0 3px 6px var(--box-shadow);

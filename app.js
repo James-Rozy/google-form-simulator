@@ -1,13 +1,23 @@
-const createFormElement = (moduleName = "") => {
-  // General form elements
+const createFormElement = (moduleName = "", moduleId = 0) => {
+  // General form element
   const element = document.createElement("div");
+
+  // Element header
   const elementHeader = document.createElement("div");
   const title = document.createElement("h2");
   const deleteBtn = document.createElement("button");
+
+  // Element inputs
+  const hiddenModuleName = document.createElement("input");
+  const hiddenModuleWeight = document.createElement("input");
   const requirementLabel = document.createElement("input");
   const requirementDescription = document.createElement("input");
   const helpText = document.createElement("input");
 
+  // set module id attribute
+  element.setAttribute("id", moduleId);
+
+  // class attribute
   element.classList.add("form-element");
   elementHeader.classList.add("element-header");
   title.classList.add("element-title");
@@ -16,16 +26,34 @@ const createFormElement = (moduleName = "") => {
   requirementDescription.classList.add("text-input");
   helpText.classList.add("text-input");
 
+  // type attribute
+  hiddenModuleName.type = "hidden";
+  hiddenModuleWeight.type = "hidden";
   requirementLabel.type = "text";
   requirementDescription.type = "text";
   helpText.type = "text";
 
+  // name attribute
+  hiddenModuleName.name = `module_name[${moduleId}]`;
+  hiddenModuleWeight.name = `module_weight[${moduleId}]`;
+  requirementLabel.name = `requirement_label[${moduleId}]`;
+  requirementDescription.name = `requirement_description[${moduleId}]`;
+  helpText.name = `help[${moduleId}]`;
+
+  // value attribute
+  title.value = moduleName.toLocaleLowerCase();
+  requirementLabel.value = "";
+  requirementDescription.value = "";
+  helpText.value = "";
+
+  // text content & placeholders
   title.textContent = moduleName;
   deleteBtn.textContent = "Delete";
   requirementLabel.placeholder = `Add the ${moduleName.toLocaleLowerCase()} requirement label...`;
   requirementDescription.placeholder = `Add the ${moduleName.toLocaleLowerCase()} requirement description...`;
   helpText.placeholder = `Add help text here...`;
 
+  // event listeners
   deleteBtn.addEventListener("click", () => {
     while (element.firstChild) element.removeChild(element.firstChild);
     element.remove();
@@ -41,8 +69,8 @@ const createFormElement = (moduleName = "") => {
   return element;
 };
 
-const createUploadModule = () => {
-  const element = createFormElement("Upload");
+const createUploadModule = (moduleId = 0) => {
+  const element = createFormElement("Upload", moduleId);
 
   const inputDiv = document.createElement("div");
   inputDiv.classList.add("input-div");
@@ -52,6 +80,8 @@ const createUploadModule = () => {
 
   const fileInput = document.createElement("input");
   fileInput.type = "file";
+  fileInput.name = `file_input[${moduleId}]`;
+  fileInput.value = "";
   fileInput.classList.add("file-input");
 
   inputDiv.appendChild(inputLabel);
@@ -61,20 +91,22 @@ const createUploadModule = () => {
   return element;
 };
 
-const createHoursModule = () => {
-  const element = createFormElement("Hours");
+const createHoursModule = (moduleId = 0) => {
+  const element = createFormElement("Hours", moduleId);
 
   return element;
 };
 
-const createTrainingModule = () => {
-  const element = createFormElement("Training");
+const createTrainingModule = (moduleId = 0) => {
+  const element = createFormElement("Training", moduleId);
 
   const inputDiv = document.createElement("div");
   inputDiv.classList.add("input-div");
   const inputLabel = document.createElement("label");
   inputLabel.textContent = "Select the training(s) you have completed...";
   const selectInput = document.createElement("select");
+  selectInput.name = `select_input[${moduleId}]`;
+  selectInput.value = "";
   selectInput.multiple = "true";
   selectInput.classList.add("training-dropdown");
   const selectOptions = [
@@ -103,28 +135,57 @@ const addModuleSidebar = () => {
   const btnAddHoursMod = document.getElementById("btn-add-hours");
   const btnAddTrainingRefMod = document.getElementById("btn-add-training-ref");
 
-  // tracking
-  const count = 0;
+  // tracking form element id
+  let idTracker = formElementList.getElementsByClassName("form-element").length;
+  const setModId = () => {
+    if (formElementList.getElementsByClassName("form-element").length === 0)
+      return idTracker;
+    idTracker++;
+    return idTracker;
+  };
 
   btnAdd.addEventListener("click", () => {
-    const newElement = createFormElement();
+    const newElement = createFormElement("", setModId());
     formElementList.appendChild(newElement);
   });
 
   btnAddUploadMod.addEventListener("click", () => {
-    const newUploadModule = createUploadModule();
+    const newUploadModule = createUploadModule(setModId());
     formElementList.appendChild(newUploadModule);
   });
 
   btnAddHoursMod.addEventListener("click", () => {
-    const newHoursModule = createHoursModule();
+    const newHoursModule = createHoursModule(setModId());
     formElementList.appendChild(newHoursModule);
   });
 
   btnAddTrainingRefMod.addEventListener("click", () => {
-    const newTrainingModule = createTrainingModule();
+    const newTrainingModule = createTrainingModule(setModId());
     formElementList.appendChild(newTrainingModule);
   });
+};
+
+const saveForm = () => {
+  const formTitle = document.getElementById("form-title");
+  const formDescription = document.getElementById("form-description");
+  const formElementList = document.getElementById("form-element-list");
+  const formElements = formElementList.getElementsByClassName("form-element");
+
+  console.log(formTitle.value);
+  console.log(formDescription.value);
+
+  for (i = 0; i < formElements.length; i++) {
+    console.log(formElements[i].elementHeader);
+    // const module = {
+    //   module_name: formElements[i].elementHeader.title.value,
+    //   module_id: formElements[i].id,
+    //   requirement_label: formElements[i].requirementLabel.value,
+    //   requirement_description: formElements[i].requirementDescription.value,
+    //   helpText: formElements[i].helpText.value,
+    // };
+
+    // console.log(module);
+  }
 };
 
 const displayFormElements = () => {
@@ -137,22 +198,30 @@ const displayFormElements = () => {
 };
 
 (() => {
-  info = JSON.parse(localStorage.getItem("info")) || [];
+  formData = JSON.parse(localStorage.getItem("form_data")) || [];
 
+  const form = document.getElementById("form");
   const formTitle = document.getElementById("form-title");
   const formDescription = document.getElementById("form-description");
+  const saveFormBtn = document.getElementById("btn-submit");
 
-  const formTitleStorage = localStorage.getItem("formTitle") || "Form Title";
+  const formTitleStorage = localStorage.getItem("form_title") || "Form Title";
   formTitle.setAttribute("value", formTitleStorage);
   formTitle.addEventListener("change", (e) => {
-    localStorage.setItem("formTitle", e.target.value);
+    localStorage.setItem("form_title", e.target.value);
   });
 
   const formDescriptionStorage =
-    localStorage.getItem("formDescription") || "Description";
+    localStorage.getItem("form_description") || "Description";
   formDescription.setAttribute("value", formDescriptionStorage);
   formDescription.addEventListener("change", (e) => {
-    localStorage.setItem("formDescription", e.target.value);
+    localStorage.setItem("form_description", e.target.value);
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    saveForm();
   });
 
   // Sidebar controls for adding elements to the form elements list
