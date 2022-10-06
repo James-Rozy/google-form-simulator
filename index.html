@@ -10,15 +10,72 @@
   </head>
   <body>
     <div class="content">
-      <form action="" id="form" method="post">
-        <!-- Header Module -->
+      <form action="#" method="post" id="form">
         <div class="form-header">
+          <input
+            type="text"
+            name="form_title"
+            id="form-title"
+            placeholder="Add the form title..."
+          />
+          <input
+            type="text"
+            name="form_title"
+            id="form-description"
+            placeholder="Add the form description..."
+          />
+        </div>
+        <div id="form-element-list">
+          <div id="1" class="form-element upload">
+            <div class="element-header">
+              <h2 class="element-title">Upload Module</h2>
+              <button class="btn-delete-element">Delete</button>
+            </div>
+            <input type="hidden" name="module_name[1]" value="upload" />
+            <input type="hidden" name="module_weight[1]" value="" />
+            <input
+              type="text"
+              name="requirement_label[1]"
+              class="text-input"
+              placeholder="Add the requirement's label..."
+            />
+            <input
+              type="text"
+              name="requirement_description[1]"
+              class="text-input"
+              placeholder="Add the requirement's description here..."
+            />
+            <input
+              type="text"
+              name="help_text[1]"
+              class="text-input"
+              placeholder="Add help text here..."
+            />
+            <div class="input-div">
+              <label for="supporting_documents[1]"
+                >Add supporting documents here:</label
+              >
+              <input
+                type="file"
+                name="supporting_documents[1]"
+                class="file-input"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-controls">
+          <button type="submit" id="btn-submit">Save form</button>
+        </div>
+      </form>
+      <!-- <form action="" id="form" method="post"> -->
+      <!-- Header Module -->
+      <!-- <div class="form-header">
           <input type="text" id="form-title" placeholder="Form Title" />
           <input type="text" id="form-description" placeholder="Description" />
-        </div>
+        </div> -->
 
-        <!-- Upload Module -->
-        <div id="form-element-list">
+      <!-- Upload Module -->
+      <!-- <div id="form-element-list">
           <div class="form-element">
             <header class="element-header">
               <h2 class="element-title">Upload</h2>
@@ -49,10 +106,10 @@
             />
 
             <input type="file" name="uploadFile" class="file-input" required />
-          </div>
+          </div> -->
 
-          <!-- Hours/Credits Module -->
-          <!-- <div class="form-element">
+      <!-- Hours/Credits Module -->
+      <!-- <div class="form-element">
             <header class="element-header">
               <input
                 type="text"
@@ -100,8 +157,8 @@
             </div>
           </div> -->
 
-          <!-- Training Reference Module -->
-          <!-- <div class="form-element">
+      <!-- Training Reference Module -->
+      <!-- <div class="form-element">
             <header class="element-header">
               <input
                 type="text"
@@ -127,13 +184,13 @@
               <option value="course3">Azure DevOps Server</option>
             </select>
           </div> -->
-        </div>
+      <!-- </div> -->
 
-        <!-- Form Controls -->
-        <div class="form-controls">
+      <!-- Form Controls -->
+      <!-- <div class="form-controls">
           <button type="submit" id="btn-submit">Save form</button>
-        </div>
-      </form>
+        </div> -->
+      <!-- </form> -->
     </div>
 
     <!-- Add Modules Sidebar -->
