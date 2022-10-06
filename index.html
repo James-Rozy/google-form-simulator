@@ -21,49 +21,14 @@
           />
           <input
             type="text"
-            name="form_title"
+            name="form_description"
             id="form-description"
             placeholder="Add the form description..."
           />
         </div>
-        <div id="form-element-list">
-          <div id="0" class="form-element upload">
-            <div name="elementHeader" class="element-header">
-              <h2 class="element-title">Upload</h2>
-              <button class="btn-delete-element">Delete</button>
-            </div>
-            <input type="hidden" name="module_name[1]" value="upload" />
-            <input type="hidden" name="module_weight[1]" value="" />
-            <input
-              type="text"
-              name="requirement_label[1]"
-              class="text-input"
-              placeholder="Add the requirement's label..."
-            />
-            <input
-              type="text"
-              name="requirement_description[1]"
-              class="text-input"
-              placeholder="Add the requirement's description here..."
-            />
-            <input
-              type="text"
-              name="help_text[1]"
-              class="text-input"
-              placeholder="Add help text here..."
-            />
-            <div class="input-div">
-              <label for="supporting_documents[1]"
-                >Add supporting documents here:</label
-              >
-              <input
-                type="file"
-                name="supporting_documents[1]"
-                class="file-input"
-              />
-            </div>
-          </div>
-        </div>
+
+        <div id="form-element-list" name="module_list"></div>
+
         <div class="form-controls">
           <button type="submit" id="btn-submit">Save form</button>
         </div>

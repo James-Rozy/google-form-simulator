@@ -34,11 +34,12 @@ const createFormElement = (moduleName = "", moduleId = 0) => {
   helpText.type = "text";
 
   // name attribute
-  hiddenModuleName.name = `module_name[${moduleId}]`;
-  hiddenModuleWeight.name = `module_weight[${moduleId}]`;
-  requirementLabel.name = `requirement_label[${moduleId}]`;
-  requirementDescription.name = `requirement_description[${moduleId}]`;
-  helpText.name = `help[${moduleId}]`;
+  // element.name = "module";
+  hiddenModuleName.name = `module[${moduleId}]['module_name']`;
+  hiddenModuleWeight.name = `module[${moduleId}]['module_weight']`;
+  requirementLabel.name = `module[${moduleId}]['req_label']`;
+  requirementDescription.name = `module[${moduleId}]['req_desc']`;
+  helpText.name = `module[${moduleId}]['help_text']`;
 
   // value attribute
   title.value = moduleName.toLocaleLowerCase();
@@ -80,7 +81,7 @@ const createUploadModule = (moduleId = 0) => {
 
   const fileInput = document.createElement("input");
   fileInput.type = "file";
-  fileInput.name = `file_input[${moduleId}]`;
+  fileInput.name = `module[${moduleId}]['file_input']`;
   fileInput.value = "";
   fileInput.classList.add("file-input");
 
@@ -105,9 +106,9 @@ const createTrainingModule = (moduleId = 0) => {
   const inputLabel = document.createElement("label");
   inputLabel.textContent = "Select the training(s) you have completed...";
   const selectInput = document.createElement("select");
-  selectInput.name = `select_input[${moduleId}]`;
+  selectInput.name = `module[${moduleId}]['training_reference']`;
   selectInput.value = "";
-  selectInput.multiple = "true";
+  // selectInput.multiple = "false";
   selectInput.classList.add("training-dropdown");
   const selectOptions = [
     "",
@@ -165,27 +166,30 @@ const addModuleSidebar = () => {
   });
 };
 
-const saveForm = () => {
-  const formTitle = document.getElementById("form-title");
-  const formDescription = document.getElementById("form-description");
+const saveForm = (e) => {
+  const formTitle = document.getElementById("form-title").value;
+  const formDescription = document.getElementById("form-description").value;
   const formElementList = document.getElementById("form-element-list");
-  const formElements = formElementList.getElementsByClassName("form-element");
+  const modules = document.getElementsByName("module[0]");
 
-  console.log(formTitle.value);
-  console.log(formDescription.value);
+  // console.log(formTitle);
+  // console.log(formDescription);
+  console.log(e.target.elements.form_title.value);
+  console.log(e.target.elements.form_description.value);
+  console.log(e.target.elements["module[]"]);
 
-  for (i = 0; i < formElements.length; i++) {
-    console.log(formElements[i].elementHeader);
-    // const module = {
-    //   module_name: formElements[i].elementHeader.title.value,
-    //   module_id: formElements[i].id,
-    //   requirement_label: formElements[i].requirementLabel.value,
-    //   requirement_description: formElements[i].requirementDescription.value,
-    //   helpText: formElements[i].helpText.value,
-    // };
+  // for (i = 0; i < modules.length; i++) {
+  //   console.log(modules[i].module[1]["req_label"]);
+  //   // const module = {
+  //   //   module_name: formElements[i].elementHeader.title.value,
+  //   //   module_id: formElements[i].id,
+  //   //   requirement_label: formElements[i].requirementLabel.value,
+  //   //   requirement_description: formElements[i].requirementDescription.value,
+  //   //   helpText: formElements[i].helpText.value,
+  //   // };
 
-    // console.log(module);
-  }
+  //   // console.log(module);
+  // }
 };
 
 const displayFormElements = () => {
@@ -221,7 +225,7 @@ const displayFormElements = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    saveForm();
+    saveForm(e);
   });
 
   // Sidebar controls for adding elements to the form elements list
