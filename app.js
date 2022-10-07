@@ -33,16 +33,17 @@ const createFormElement = (moduleName = "", moduleId = 0) => {
   requirementDescription.type = "text";
   helpText.type = "text";
 
-  // name attribute
-  // element.name = "module";
-  hiddenModuleName.name = `module[${moduleId}]['module_name']`;
-  hiddenModuleWeight.name = `module[${moduleId}]['module_weight']`;
-  requirementLabel.name = `module[${moduleId}]['req_label']`;
-  requirementDescription.name = `module[${moduleId}]['req_desc']`;
-  helpText.name = `module[${moduleId}]['help_text']`;
+  // id attribute
+  hiddenModuleName.id = `module[${moduleId}]['module_name']`;
+  hiddenModuleWeight.id = `module[${moduleId}]['module_weight']`;
+  requirementLabel.id = `module[${moduleId}]['req_label']`;
+  requirementDescription.id = `module[${moduleId}]['req_desc']`;
+  helpText.id = `module[${moduleId}]['help_text']`;
 
   // value attribute
   title.value = moduleName.toLocaleLowerCase();
+  hiddenModuleName.value = moduleName.toLocaleLowerCase();
+  hiddenModuleWeight.value = moduleId;
   requirementLabel.value = "";
   requirementDescription.value = "";
   helpText.value = "";
@@ -63,6 +64,8 @@ const createFormElement = (moduleName = "", moduleId = 0) => {
   elementHeader.appendChild(title);
   elementHeader.appendChild(deleteBtn);
   element.appendChild(elementHeader);
+  element.appendChild(hiddenModuleName);
+  element.appendChild(hiddenModuleWeight);
   element.appendChild(requirementLabel);
   element.appendChild(requirementDescription);
   element.appendChild(helpText);
@@ -81,7 +84,7 @@ const createUploadModule = (moduleId = 0) => {
 
   const fileInput = document.createElement("input");
   fileInput.type = "file";
-  fileInput.name = `module[${moduleId}]['file_input']`;
+  fileInput.id = `module[${moduleId}]['file_upload']`;
   fileInput.value = "";
   fileInput.classList.add("file-input");
 
@@ -106,7 +109,7 @@ const createTrainingModule = (moduleId = 0) => {
   const inputLabel = document.createElement("label");
   inputLabel.textContent = "Select the training(s) you have completed...";
   const selectInput = document.createElement("select");
-  selectInput.name = `module[${moduleId}]['training_reference']`;
+  selectInput.id = `module[${moduleId}]['training_ref']`;
   selectInput.value = "";
   // selectInput.multiple = "false";
   selectInput.classList.add("training-dropdown");
@@ -166,68 +169,57 @@ const addModuleSidebar = () => {
   });
 };
 
-const saveForm = (e) => {
+const saveForm = () => {
+  formData = JSON.parse(localStorage.getItem("form_data")) || {};
+
   const formTitle = document.getElementById("form-title").value;
   const formDescription = document.getElementById("form-description").value;
-  const formElementList = document.getElementById("form-element-list");
-  const modules = document.getElementsByName("module[0]");
+  const modules = document.getElementsByClassName("form-element");
 
-  // console.log(formTitle);
-  // console.log(formDescription);
-  console.log(e.target.elements.form_title.value);
-  console.log(e.target.elements.form_description.value);
-  console.log(e.target.elements["module[]"]);
+  formData.form_title = formTitle;
+  formData.form_desc = formDescription;
 
-  // for (i = 0; i < modules.length; i++) {
-  //   console.log(modules[i].module[1]["req_label"]);
-  //   // const module = {
-  //   //   module_name: formElements[i].elementHeader.title.value,
-  //   //   module_id: formElements[i].id,
-  //   //   requirement_label: formElements[i].requirementLabel.value,
-  //   //   requirement_description: formElements[i].requirementDescription.value,
-  //   //   helpText: formElements[i].helpText.value,
-  //   // };
+  const modulesStorageArr = [];
+  for (i = 0; i < modules.length; i++) {
+    const module = {
+      module_name: document.getElementById(`module[${i}]['module_name']`).value,
+      module_weight: document.getElementById(`module[${i}]['module_weight']`)
+        .value,
+      req_label: document.getElementById(`module[${i}]['req_label']`).value,
+      req_desc: document.getElementById(`module[${i}]['req_desc']`).value,
+      helpText: document.getElementById(`module[${i}]['help_text']`).value,
+    };
 
-  //   // console.log(module);
-  // }
-};
+    if (module.module_name === "upload") {
+      module.file_upload = document.getElementById(
+        `module[${i}]['file_upload']`
+      ).value;
+    }
 
-const displayFormElements = () => {
-  const formElementList = document.querySelector("#form-element-list");
+    if (module.module_name === "training") {
+      module.training_ref = document.getElementById(
+        `module[${i}]['training_ref']`
+      ).value;
+    }
 
-  // Remove old elements from the list before updating
-  while (formElementList.firstChild) {
-    formElementList.removeChild(formElementList.firstChild);
+    modulesStorageArr.push(module);
   }
+
+  formData.modules = modulesStorageArr;
+  localStorage.setItem("form_data", JSON.stringify(formData));
+
+  console.log(formData);
 };
 
 (() => {
-  formData = JSON.parse(localStorage.getItem("form_data")) || [];
-
   const form = document.getElementById("form");
-  const formTitle = document.getElementById("form-title");
-  const formDescription = document.getElementById("form-description");
-  const saveFormBtn = document.getElementById("btn-submit");
-
-  const formTitleStorage = localStorage.getItem("form_title") || "Form Title";
-  formTitle.setAttribute("value", formTitleStorage);
-  formTitle.addEventListener("change", (e) => {
-    localStorage.setItem("form_title", e.target.value);
-  });
-
-  const formDescriptionStorage =
-    localStorage.getItem("form_description") || "Description";
-  formDescription.setAttribute("value", formDescriptionStorage);
-  formDescription.addEventListener("change", (e) => {
-    localStorage.setItem("form_description", e.target.value);
-  });
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    saveForm(e);
-  });
 
   // Sidebar controls for adding elements to the form elements list
   addModuleSidebar();
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    localStorage.removeItem("form_data");
+    saveForm();
+  });
 })();

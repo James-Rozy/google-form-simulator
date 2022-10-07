@@ -2,11 +2,6 @@
 
 :root {
   --main-font-family: 'Roboto', sans-serif;
-  /* colors from tailwind css */
-  --emerald-600: #10b981;
-  --emerald-700: #059669;
-  --red-600: #dc2626;
-  --red-700: #b91c1c;
   --slate-50: #f8fafc;
   --slate-100: #f1f5f9;
   --slate-200: #e2e8f0;
@@ -17,6 +12,10 @@
   --slate-700: #334155;
   --slate-800: #1e293b;
   --slate-900: #0f172a;
+  --emerald-600: #10b981;
+  --emerald-700: #059669;
+  --red-600: #dc2626;
+  --red-700: #b91c1c;
   --box-shadow: rgba(0, 0, 0, 0.33);
 }
 
@@ -53,13 +52,13 @@ body {
   min-width: 800px;
 }
 
-input,
+input[type="file"],
 select,
 button {
   cursor: pointer;
 }
 
-input:active {
+input[type="text"] {
   cursor: initial;
 }
 
@@ -106,7 +105,6 @@ input:active {
 .element-title {
   font-size: 1.6rem;
   font-weight: 500;
-
 }
 
 .input-div {

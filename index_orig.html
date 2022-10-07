@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Form Simulator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+
+  <body>
+    <div class="content">
+      <form action="#" method="post" id="form">
+        <div class="form-header">
+          <input
+            type="text"
+            name="form_title"
+            id="form-title"
+            placeholder="Add the form title..."
+          />
+          <input
+            type="text"
+            name="form_description"
+            id="form-description"
+            placeholder="Add the form description..."
+          />
+        </div>
+        <div id="form-element-list">
+          <div id="0" class="form-element upload">
+            <div class="element-header">
+              <h2 class="element-title">Upload</h2>
+              <button class="btn-delete-element">Delete</button>
+            </div>
+            <input
+              type="hidden"
+              name="module[0]['module_name']"
+              value="upload"
+            />
+            <input type="hidden" name="module[0]['module_weight']" value="2" />
+            <input
+              type="text"
+              name="module[0]['req_label']"
+              class="text-input"
+              placeholder="Add the requirement's label..."
+            />
+            <input
+              type="text"
+              name="module[0]['req_desc']"
+              class="text-input"
+              placeholder="Add the requirement's description here..."
+            />
+            <input
+              type="text"
+              name="module[0]['help_text']"
+              class="text-input"
+              placeholder="Add help text here..."
+            />
+            <!-- <div class="input-div">
+              <label for="supporting_documents[1]"
+                >Add supporting documents here:</label
+              >
+              <input
+                type="file"
+                name="supporting_documents[1]"
+                class="file-input"
+              />
+            </div> -->
+          </div>
+          <div id="1" class="form-element upload">
+            <div class="element-header">
+              <h2 class="element-title">Upload</h2>
+              <button class="btn-delete-element">Delete</button>
+            </div>
+            <input
+              type="hidden"
+              name="module[1]['module_name']"
+              value="upload"
+            />
+            <input type="hidden" name="module[1]['module_weight']" value="2" />
+            <input
+              type="text"
+              name="module[1]['req_label']"
+              class="text-input"
+              placeholder="Add the requirement's label..."
+            />
+            <input
+              type="text"
+              name="module[1]['req_desc']"
+              class="text-input"
+              placeholder="Add the requirement's description here..."
+            />
+            <input
+              type="text"
+              name="module[1]['help_text']"
+              class="text-input"
+              placeholder="Add help text here..."
+            />
+            <!-- <div class="input-div">
+              <label for="supporting_documents[1]"
+                >Add supporting documents here:</label
+              >
+              <input
+                type="file"
+                name="supporting_documents[1]"
+                class="file-input"
+              />
+            </div> -->
+          </div>
+        </div>
+        <div class="form-controls">
+          <button type="submit" id="btn-submit">Save form</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Add Modules Sidebar -->
+    <div class="sidebar">
+      <nav class="add-mod-menu">
+        <h2 class="form-title">Add Modules</h2>
+
+        <button id="btn-add-element" class="btn-add-module">Add Element</button>
+        <button id="btn-add-upload" class="btn-add-module">Add Upload</button>
+        <button id="btn-add-hours" class="btn-add-module">Add Hours</button>
+        <button id="btn-add-training-ref" class="btn-add-module">
+          Add Training
+        </button>
+      </nav>
+    </div>
+  </body>
+</html>
